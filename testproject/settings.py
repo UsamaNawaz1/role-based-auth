@@ -107,7 +107,7 @@ DATABASES = {
 }
 
 # DATABASES['default'] = DATABASES['dev' if DEBUG==False else 'production']
-DATABASES['default'] = DATABASES['dev']
+DATABASES['default'] = DATABASES['production']
 # DATABASES['default'] = DATABASES['dev']
 
 # Password validation
