@@ -30,6 +30,12 @@ def loginPage(request):
     return render(request, 'accounts/login.html', data)
 
 @login_required(login_url='home')
+def charts(request):
+    return render(request, 'accounts/charts.html')
+
+
+
+@login_required(login_url='home')
 def dashboard(request):
     users = User.objects.all()
     total_users = users.count() - 1

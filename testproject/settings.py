@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-@tiost#8_4&y*(&7o8=n#%^!+zvld+=dg(zd$s+*_6vry9l@6w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['139.59.158.36']
+ALLOWED_HOSTS = ['139.59.158.36', '127.0.0.1']
 
 
 # Application definition
@@ -107,7 +107,7 @@ DATABASES = {
 }
 
 # DATABASES['default'] = DATABASES['dev' if DEBUG==False else 'production']
-DATABASES['default'] = DATABASES['production']
+DATABASES['default'] = DATABASES['dev']
 # DATABASES['default'] = DATABASES['dev']
 
 # Password validation

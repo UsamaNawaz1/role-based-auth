@@ -20,6 +20,7 @@ urlpatterns = [
     
     path('', views.loginPage, name='home'),
     path('register/', views.register, name='register'),
+    path('charts/', views.charts, name='charts'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('logout/', views.logoutPage, name='logout'),
     

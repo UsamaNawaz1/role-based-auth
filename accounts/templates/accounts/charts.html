@@ -12,7 +12,7 @@ License: -->
 	<!--begin::Head-->
 	<head><base href="../../../">
 		<meta charset="utf-8" />
-		<title>Dashboard</title>
+		<title>Charts</title>
 		<meta name="description" content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
 		<meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular 11, VueJs, React, Laravel, admin themes, web design, figma, web development, ree admin themes, bootstrap admin, bootstrap dashboard" />
 		<link rel="canonical" href="Https://preview.keenthemes.com/metronic8" />
@@ -27,34 +27,13 @@ License: -->
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link href="{% static 'css/plugins.bundle.css' %}" rel="stylesheet" type="text/css" />
 		<link href="{% static 'css/style.bundle.css' %}" rel="stylesheet" type="text/css" />
-		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        
 		<!--end::Global Stylesheets Bundle-->
 	</head>
-	<style>
-		.slidecontainer {
-		  width: 100%;
-		}
-		.numberCircle {
-    font: 32px Arial, sans-serif;
-
-    width: 2em;
-    height: 2em;
-    box-sizing: initial;
-
-    background: #fff;
-    border: 0.1em solid #666;
-    color: #666;
-    text-align: center;
-    border-radius: 50%;    
-
-    line-height: 2em;
-    box-sizing: content-box;   
-}
-
-		</style>
 	<!--end::Head-->
 	<!--begin::Body-->
-	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed  toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed toolbar-tablet-and-mobile-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
 		<!--begin::Main-->
 		<!--begin::Root-->
 		<div class="d-flex flex-column flex-root">
@@ -150,7 +129,7 @@ License: -->
 												
 											</div>
 											<div class="menu-item me-lg-1">
-												<a class="menu-link py-3" href="{% url 'charts' %}">
+												<a class="menu-link py-3" href="{% url 'dashboard' %}">
 													<span class="menu-title">Charts</span>
 												</a>
 												
@@ -226,54 +205,12 @@ License: -->
 							<div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
 								<!--begin::Page title-->
 								<div data-kt-place="true" data-kt-place-mode="prepend" data-kt-place-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center me-3 flex-wrap mb-5 mb-lg-0 lh-1">
-									<!--begin::Title-->
-									{% if request.user.is_superuser %}
-									<h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">View Subscriber List</h1>
-									{% else %}
-									<h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Your Profile</h1>
-									{% endif %}
-									<!--end::Title-->
-									<!--begin::Separator-->
-									<span class="h-20px border-gray-200 border-start mx-4"></span>
-									<!--end::Separator-->
-									<!--begin::Breadcrumb-->
-									<ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-										<!--begin::Item-->
-										<li class="breadcrumb-item text-muted">
-											<a href="{% url 'dashboard' %}" class="text-muted text-hover-primary">Home</a>
-										</li>
-										<!--end::Item-->
-										<!--begin::Item-->
-										<li class="breadcrumb-item">
-											<span class="bullet bg-gray-200 w-5px h-2px"></span>
-										</li>
-										<!--end::Item-->
-										<!--begin::Item-->
-										<li class="breadcrumb-item text-muted">User Management</li>
-										<!--end::Item-->
-										<!--begin::Item-->
-										<li class="breadcrumb-item">
-											<span class="bullet bg-gray-200 w-5px h-2px"></span>
-										</li>
-										<!--end::Item-->
-										<!--begin::Item-->
-										<li class="breadcrumb-item text-muted">Roles</li>
-										<!--end::Item-->
-										<!--begin::Item-->
-										<li class="breadcrumb-item">
-											<span class="bullet bg-gray-200 w-5px h-2px"></span>
-										</li>
-										<!--end::Item-->
-										<!--begin::Item-->
-										<li class="breadcrumb-item text-dark">View Role</li>
-										<!--end::Item-->
-									</ul>
-									<!--end::Breadcrumb-->
+									
 								</div>
 								
 								<div class="d-flex align-items-center py-1">
 									{% if request.user.is_superuser %}
-									<a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Create User</a>
+									<a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Add new Chart</a>
 									
 									{% endif %}
 									<!--end::Button-->
@@ -284,149 +221,26 @@ License: -->
 						</div>
 						<!--end::Toolbar-->
 						<!--begin::Post-->
-						<div class="post d-flex flex-column-fluid" id="kt_post">
-							<!--begin::Container-->
-							<div id="kt_content_container" class="container">
-								<!--begin::Layout-->
-								<div class="d-flex flex-column flex-xl-row">
-									<!--begin::Sidebar-->
-									
-									<!--end::Sidebar-->
-									<!--begin::Content-->
-									<div class="flex-lg-row-fluid ms-lg-10">
-										<!--begin::Card-->
-										<div class="card card-flush mb-6 mb-xl-9">
-											<!--begin::Card header-->
-											<div class="card-header pt-5">
-												<!--begin::Card title-->
-												{% if request.user.is_superuser %}
-													<div class="card-title">
-														<h2 class="d-flex align-items-center">Total Subscribers
-														<span class="text-gray-600 fs-6 ms-1">({{total_users}})</span></h2>
-													</div>
-												{% else %}
-													<div class="card-title">
-														<h2 class="d-flex align-items-center">Your Account Details
-														</h2>
-													</div>
-												{% endif %}
-												<!--end::Card title-->
-												<!--begin::Card toolbar-->
-												<div class="card-toolbar">
-													<!--begin::Search-->
-													
-													<!--end::Search-->
-													<!--begin::Group actions-->
-													
-													<!--end::Group actions-->
-												</div>
-												<!--end::Card toolbar-->
-											</div>
-											<!--end::Card header-->
-											<!--begin::Card body-->
-											<div class="card-body pt-0">
-												<!--begin::Table-->
-												<table class="table align-middle table-row-dashed fs-6 gy-5 mb-0" id="kt_roles_view_table">
-													<!--begin::Table head-->
-													<thead>
-														<!--begin::Table row-->
-														<tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-															
-															
-															<th class="min-w-150px">User</th>
-															<th class="min-w-125px">Rank</th>
-															
-														</tr>
-														<!--end::Table row-->
-													</thead>
-													<!--end::Table head-->
-													<!--begin::Table body-->
-													<tbody class="fw-bold text-gray-600">
-														
-														
-														
-														{% if request.user.is_superuser %}
-															{% for user in users %}
-																{% if user.is_superuser %}
-																{% else %}
-																<tr>
-																	
-																	<!--begin::ID-->
-																	<!--begin::User=-->
-																	<td class="d-flex align-items-center">
-																		<!--begin:: Avatar -->
-																		<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-																			<a href="{% url 'dashboard' %}">
-																				<div class="symbol-label">
-																					<img src="{% static 'images/150-20.jpg' %}" alt="John Miller" class="w-100" />
-																				</div>
-																			</a>
-																		</div>
-																		<!--end::Avatar-->
-																		<!--begin::User details-->
-																		<div class="d-flex flex-column">
-																			<a href="" class="text-gray-800 text-hover-primary mb-1" data-bs-toggle="modal" data-bs-target="#kt_modal_temp_app" id="kt_toolbar_primary_button">{{user.userprofile.first_name}} {{user.userprofile.last_name}}</a>
-																			<span>{{user.userprofile.email}}</span>
-																		</div>
-																		<!--begin::User details-->
-																	</td>
-																	<!--end::user=-->
-																	<!--begin::Joined date=-->
-																	<td>Subscriber</td>
-																	<!--end::Joined date=-->
-																	<!--begin::Action=-->
-																	
-																	<!--end::Action=-->
-																</tr>
-															{% endif %}
-															{% endfor %}
-														{% else %}
-															<tr>
-																
-																<!--begin::ID-->
-																<!--begin::User=-->
-																<td class="d-flex align-items-center">
-																	<!--begin:: Avatar -->
-																	<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-																		<a href="{% url 'dashboard' %}">
-																			<div class="symbol-label">
-																				<img src="{% static 'images/150-20.jpg' %}" alt="John Miller" class="w-100" />
-																			</div>
-																		</a>
-																	</div>
-																	<!--end::Avatar-->
-																	<!--begin::User details-->
-																	<div class="d-flex flex-column">
-																		<a href="{% url 'dashboard' %}" class="text-gray-800 text-hover-primary mb-1">{{request.user.userprofile.first_name}} {{request.user.userprofile.last_name}}</a>
-																		<span>{{request.user.email}}</span>
-																	</div>
-																	<!--begin::User details-->
-																</td>
-																<!--end::user=-->
-																<!--begin::Joined date=-->
-																<td>Subscriber</td>
-																<!--end::Joined date=-->
-																<!--begin::Action=-->
-																
-																<!--end::Action=-->
-															</tr>
-														{% endif %}
-														
-													</tbody>
-													<!--end::Table body-->
-												</table>
-												<!--end::Table-->
-											</div>
-											<!--end::Card body-->
-										</div>
-										<!--end::Card-->
-									</div>
-									<!--end::Content-->
-								</div>
-								<!--end::Layout-->
-							</div>
-							<!--end::Container-->
-						</div>
+                        <div class="container">
+                            <a href="" style="color: black;" data-bs-toggle="modal" data-bs-target="#kt_modal_temp_app" id="kt_toolbar_primary_button">
+                            <div class="accordion" id="kt_accordion_1">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="kt_accordion_1_header_1">
+                                        <button class="accordion-button fs-4 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_1" aria-expanded="false" aria-controls="kt_accordion_1_body_1">
+                                            22 August, 2021
+                                        </button>
+                                    </h2>
+                                    
+                                    <div class="accordion-body">
+                                        this is a temp project this is a temp project this is a temp project this is a temp projectthis is a temp projectthis is a temp projectthis is a temp projectthis is a temp project
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#kt_modal_temp_app" id="kt_toolbar_primary_button"><i style="float: right; font-size: medium;" class="icon-angle-right"></i></a>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+						
 						<!--end::Post-->
 					</div>
 					<!--end::Content-->
@@ -623,391 +437,176 @@ License: -->
 		</div>
 		<!--end::Modal - Create App-->
 
-		<!-- create tempmodel -->
+        <!-- create tempmodel -->
         <div class="modal fade" id="kt_modal_temp_app" tabindex="-1" aria-hidden="true">
 			<!--begin::Modal dialog-->
-			<div class="modal-dialog modal-fullscreen">
+			<div class="modal-dialog modal-dialog-centered mw-900px">
 				<!--begin::Modal content-->
 				<div class="modal-content">
 					<!--begin::Modal header-->
 					<div class="modal-header">
 						<!--begin::Modal title-->
-						<h2>Michelle Doe</h2>
-						<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-							<!--begin::Svg Icon | path: icons/duotone/Navigation/Close.svg-->
-							<span class="svg-icon svg-icon-1">
-								<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-									<g transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)" fill="#000000">
-										<rect fill="#000000" x="0" y="7" width="16" height="2" rx="1" />
-										<rect fill="#000000" opacity="0.5" transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000)" x="0" y="7" width="16" height="2" rx="1" />
-									</g>
-								</svg>
-							</span>
-							<!--end::Svg Icon-->
-						</div>
-                        
-						
+						<h2>Chart Overview</h2>
+                        <div class="d-flex align-items-center py-1">
+                            {% if request.user.is_superuser %}
+                            <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Add new Chart</a>
+                            
+                            {% endif %}
+                            <!--end::Button-->
+                        </div>
 						<!--end::Modal title-->
 						<!--begin::Close-->
 						
 						<!--end::Close-->
 					</div>
-                    
+                    <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h3 class="card-title">Title</h3>
+                                <div class="card-toolbar">
+                                    <button type="button" class="btn btn-sm btn-light">
+                                        Action
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                Lorem Ipsum is simply dummy text...
+                            </div>
+                            <div class="card-footer">
+                                Footer
+                            </div>
+                        </div>
 					<!--end::Modal header-->
 					<!--begin::Modal body-->
-					<div style="background-color: #F2F2F2;" class="modal-body py-lg-10 px-lg-10">
+					<div class="modal-body py-lg-10 px-lg-10">
 						<!--begin::Stepper-->
-						
-						<div style="display: block;">
-							{% if request.user.is_superuser %}
-							<a style="float: right; " href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Add new Chart</a>
+						<div >
+							<!--begin::Aside-->
+							<div >
+								<!--begin::Nav-->
+								<div class="stepper-nav">
+									<!--begin::Step 1-->
+									<div class="flex-row-fluid ">
+                                        <!--begin::Form-->
+                                        <form class="form" method="POST" novalidate="novalidate" id="kt_modal_create_app_form">
+                                            <!--begin::Step 1-->
+											{% csrf_token %}
+                                            <div class="current" data-kt-stepper-element="content">
+                                                <div class="w-100">
+                                                    <!--begin::Input group-->
+                                                    <div class="fv-row mb-10">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center ">
+                                                            <span class="required">Username</span>
+                                                            
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="text" class="form-control form-control-lg form-control-solid" name="username" id="username" placeholder="" value="" />
+                                                        <!--end::Input-->
+                                                    </div>
+
+													<div class="fv-row mb-10">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center ">
+                                                            <span class="required">Email</span>
+                                                            
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="text" class="form-control form-control-lg form-control-solid" name="email" id="email" placeholder="" value="" />
+                                                        <!--end::Input-->
+                                                    </div>
+
+													<div class="fv-row mb-10">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center ">
+                                                            <span class="required">First Name</span>
+                                                            
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="text" class="form-control form-control-lg form-control-solid" name="first_name" id="first_name" placeholder="" value="" />
+                                                        <!--end::Input-->
+                                                    </div>
+
+													<div class="fv-row mb-10">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center ">
+                                                            <span class="required">Last Name</span>
+                                                            
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="text" class="form-control form-control-lg form-control-solid" name="last_name" id="last_name" placeholder="" value="" />
+                                                        <!--end::Input-->
+                                                    </div>
+
+													<div class="fv-row mb-10">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center ">
+                                                            <span class="required">Password</span>
+                                                            
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="password" class="form-control form-control-lg form-control-solid" name="password1" id="password1" placeholder="" value="" />
+                                                        <!--end::Input-->
+                                                    </div>
+
+													<div class="fv-row mb-10">
+                                                        <!--begin::Label-->
+                                                        <label class="d-flex align-items-center ">
+                                                            <span class="required">Repeat Password</span>
+                                                            
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Input-->
+                                                        <input type="password" class="form-control form-control-lg form-control-solid" name="password2" id="password2" placeholder="" value="" />
+                                                        <!--end::Input-->
+                                                    </div>
+                                                    <!--end::Input group-->
+                                                    <!--begin::Input group-->
+                                                    <button type="submit" class="btn btn-lg btn-primary" data-kt-stepper-action="next">Continue
+                                                        <!--begin::Svg Icon | path: icons/duotone/Navigation/Right-2.svg-->
+                                                        <span class="svg-icon svg-icon-3 ms-1 me-0">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                                    <polygon points="0 0 24 0 24 24 0 24" />
+                                                                    <rect fill="#000000" opacity="0.5" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000)" x="7.5" y="7.5" width="2" height="9" rx="1" />
+                                                                    <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997)" />
+                                                                </g>
+                                                            </svg>
+                                                        </span>
+                                                        <!--end::Svg Icon--></button>
+                                                    <!--end::Input group-->
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                        </form>
+                                        <!--end::Form-->
+                                    </div>
+									<!--end::Step 1-->
+									<!--begin::Step 2-->
+									
+									<!--end::Step 2-->
+									<!--begin::Step 3-->
+									
+									
+									<!--end::Step 4-->
+									
+									<!--end::Step 5-->
+								</div>
+								<!--end::Nav-->
+							</div>
+							<!--begin::Aside-->
+							<!--begin::Content-->
 							
-							{% endif %}
-							<!--end::Button-->
+							<!--end::Content-->
 						</div>
-						<br><br><br>
-						<!--begin::Accordion-->
-						<div class="accordion" id="kt_accordion_1">
-							<div class="accordion-item">
-								<h2 class="accordion-header" id="kt_accordion_1_header_1" onclick="newfunction()" style="background-color: #F9F9F9; color: black;">
-									<button class="accordion-button fs-4 fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_1_body_1" aria-expanded="false" aria-controls="kt_accordion_1_body_1">
-										22 August, 2021 <span style="margin-left: 75%; font-size: 15px;"><i class="icon-lock"></i> Peter R.Cole</span>
-										
-									</button>
-									
-						
-								</h2>
-								
-								<div class="accordion-body" id="temp_body">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-									<a href=""><i style="float: right; font-size: medium;" class="icon-angle-right"></i></a>
-								</div>
-								<div id="kt_accordion_1_body_1" class="accordion-collapse collapse" aria-labelledby="kt_accordion_1_header_1" data-bs-parent="#kt_accordion_1">
-									<div class="accordion-body">
-										<h4>Chart Overview</h4>
-										<a href="#" style="padding: 5px 8px 5px 10px; margin-left:7px; margin-top: -2%; float: right;" class="btn btn-primary">Add new Section</a><br>
-										<div class="card">
-											<div class="card-header" style="background-color: #F2F2F2;">
-												
-												<div class="input-group">
-													<div class="form-outline">
-														
-													  <input style="margin-top: 6%;" placeholder="Search" type="search" id="form1" class="form-control" />
-													  
-													  
-													</div>
-													
-												</div>
-												
-												  
-												
-											</div>
-											
-											
-										</div>
-										<br>
-										<div class="container">
-											<div class="row">
-											  <div class="col-8">
-												<img width="100%" height="80%" src="{% static 'images/body.png' %}" alt="">
-												<br><br>
-												<a href="#" style="padding: 5px 8px 5px 10px; margin-top: 5px;" class="btn btn-warning"><i style="font-size: 12px ;" class="icon-chevron-up"></i></a>
-												<a href="#" style="padding: 5px 8px 5px 10px; margin-top: 5px; margin-left:7px;" class="btn btn-primary"><i style="font-size: 12px ;" class="icon-chevron-up"></i></a>
-												<a href="#" style="padding: 5px 8px 5px 10px; margin-top: 5px; margin-left:7px;" class="btn btn-danger"><i style="font-size: 12px ;" class="icon-chevron-up"></i></a>
-												<a href="#" style="padding: 5px 8px 5px 10px; margin-top: 5px; margin-left:7px; float: right;" class="btn btn-secondary">Upload Picture</a>
-												<a href="#" style="padding: 5px 8px 5px 10px; margin-top: 5px; margin-left:7px; float: right;" class="btn btn-secondary">Delete Picture</a>
-											  </div>
-											  <div class="col-4" style="padding-left: 30px;">
-												  <h4>Pain level</h4>
-												  <hr>
-												  <div style="padding: 10px 10px 10px 10px;">
-													<div class="slidecontainer">
-														<div class="row">
-															<div class="col-3">
-																<h7>Area 1.</h7>
-															</div>
-															<div class="col-6">
-																<input type="range" min="1" max="10" value="5"  id="myRange">
-															</div>
-															<div class="col-3">
-																<div class="numberCircle" id="demo" style="font-size: 9px;"></div>
-
-															</div>
-														</div>
-														<br>
-														<div class="row">
-															<div class="col-3">
-																<h7>Area 2.</h7>
-															</div>
-															<div class="col-6">
-																<input type="range" min="1" max="10" value="5"  id="myRange1">
-															</div>
-															<div class="col-3">
-																<div class="numberCircle" id="demo1" style="font-size: 9px;" ></div>
-															</div>
-														</div>
-														<br>
-														<div class="row">
-															<div class="col-3">
-																<h7>Area 3.</h7>
-															</div>
-															<div class="col-6">
-																<input type="range" min="1" max="10" value="5"  id="myRange2">
-															</div>
-															<div class="col-3">
-																<div class="numberCircle" id="demo2" style="font-size: 9px;"></div>
-															</div>
-														</div>
-														<br>
-														<div class="row">
-															<div class="col-3">
-																<h7>Area 4.</h7>
-															</div>
-															<div class="col-6">
-																<input type="range" min="1" max="10" value="5"  id="myRange3">
-															</div>
-															<div class="col-3">
-																<div class="numberCircle" id="demo3" style="font-size: 9px;"></div>
-															</div>
-														</div>
-														
-														
-														
-														
-														
-													</div>
-												  </div>
-												
-											  </div>
-											  
-											</div>
-											<hr>
-											<!--begin::Accordion-->
-											<div class="accordion">
-												<div class="accordion-item">
-													<h2 class="accordion-header" >
-														<button style="color: black; font-weight: bold; font-size: 14px;" class="accordion-button" type="button">
-															<a href="#" style="padding: 5px 8px 5px 10px; margin-right: 25px;" class="btn btn-warning">1</a>
-															Shoulder Pain
-															<h5 style="margin:0px 8px 0px 25px">Level    </h5><h5 style="font-size: .60em; margin-top:5px" class="numberCircle">2</h5>
-														</button>
-													</h2>
-													<div class="accordion-body">
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-													</div>
-													
-												</div>
-											</div>
-											<br><br>
-											<div class="accordion">
-												<div class="accordion-item">
-													<h2 class="accordion-header" >
-														<button style="color: black; font-weight: bold; font-size: 14px;" class="accordion-button" type="button">
-															<a href="#" style="padding: 5px 8px 5px 10px; margin-right: 25px;" class="btn btn-warning">2</a>
-															Elbow Pain
-															<h5 style="margin:0px 8px 0px 25px">Level    </h5><h5 style="font-size: .60em; margin-top:5px" class="numberCircle">2</h5>
-														</button>
-													</h2>
-													<div class="accordion-body">
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-													</div>
-													
-												</div>
-											</div>
-											<br><br>
-											<div class="accordion">
-												<div class="accordion-item">
-													<h2 class="accordion-header" >
-														<button style="color: black; font-weight: bold; font-size: 14px;" class="accordion-button" type="button">
-															<a href="#" style="padding: 5px 8px 5px 10px; margin-right: 25px;" class="btn btn-warning">3</a>
-															Knee Pain
-															<h5 style="margin:0px 8px 0px 25px">Level    </h5><h5 style="font-size: .60em; margin-top:5px" class="numberCircle">5</h5>
-														</button>
-													</h2>
-													<div class="accordion-body">
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-													</div>
-													
-												</div>
-											</div>
-										  </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<br><br>
-						<div class="accordion" id="kt_accordion_2">
-							<div class="accordion-item">
-								<h2 class="accordion-header" id="kt_accordion_2_header_2" onclick="newfunction1()">
-									<button class="accordion-button fs-4 fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kt_accordion_2_body_2" aria-expanded="false" aria-controls="kt_accordion_1_body_2">
-										10 October, 2021<span style="margin-left: 75%; font-size: 15px;"><i class="icon-lock"></i> Peter R.Cole</span>
-									</button>
-									
-								</h2>
-								<div class="accordion-body" id="temp_body1">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-									<a href=""><i style="float: right; font-size: medium;" class="icon-angle-right"></i></a>
-								</div>
-								<div id="kt_accordion_2_body_2" class="accordion-collapse collapse" aria-labelledby="kt_accordion_2_header_2" data-bs-parent="#kt_accordion_2">
-									<div class="accordion-body">
-										<h4>Chart Overview</h4>
-										<a href="#" style="padding: 5px 8px 5px 10px; margin-left:7px; margin-top: -2%; float: right;" class="btn btn-primary">Add new Section</a><br>
-										<div class="card">
-											<div class="card-header" style="background-color: #F2F2F2;">
-												
-												<div class="input-group">
-													<div class="form-outline">
-														
-													  <input style="margin-top: 6%;" placeholder="Search" type="search" id="form1" class="form-control" />
-													  
-													  
-													</div>
-													
-												</div>
-												
-												  
-												
-											</div>
-											
-											
-										</div>
-										<br>
-										<div class="container">
-											<div class="row">
-											  <div class="col-8">
-												<img width="100%" height="80%" src="{% static 'images/body.png' %}" alt="">
-												<br><br>
-												<a href="#" style="padding: 5px 8px 5px 10px; margin-top: 5px;" class="btn btn-warning"><i style="font-size: 12px ;" class="icon-chevron-up"></i></a>
-												<a href="#" style="padding: 5px 8px 5px 10px; margin-top: 5px; margin-left:7px;" class="btn btn-primary"><i style="font-size: 12px ;" class="icon-chevron-up"></i></a>
-												<a href="#" style="padding: 5px 8px 5px 10px; margin-top: 5px; margin-left:7px;" class="btn btn-danger"><i style="font-size: 12px ;" class="icon-chevron-up"></i></a>
-												<a href="#" style="padding: 5px 8px 5px 10px; margin-top: 5px; margin-left:7px; float: right;" class="btn btn-secondary">Upload Picture</a>
-												<a href="#" style="padding: 5px 8px 5px 10px; margin-top: 5px; margin-left:7px; float: right;" class="btn btn-secondary">Delete Picture</a>
-											  </div>
-											  <div class="col-4" style="padding-left: 30px;">
-												  <h4>Pain level</h4>
-												  <hr>
-												  <div style="padding: 10px 10px 10px 10px;">
-													<div class="slidecontainer">
-														<div class="row">
-															<div class="col-3">
-																<h7>Area 1.</h7>
-															</div>
-															<div class="col-6">
-																<input type="range" min="1" max="10" value="5"  id="myRange">
-															</div>
-															<div class="col-3">
-																<div class="numberCircle" id="demo" style="font-size: 9px;"></div>
-
-															</div>
-														</div>
-														<br>
-														<div class="row">
-															<div class="col-3">
-																<h7>Area 2.</h7>
-															</div>
-															<div class="col-6">
-																<input type="range" min="1" max="10" value="5"  id="myRange1">
-															</div>
-															<div class="col-3">
-																<div class="numberCircle" id="demo1" style="font-size: 9px;" ></div>
-															</div>
-														</div>
-														<br>
-														<div class="row">
-															<div class="col-3">
-																<h7>Area 3.</h7>
-															</div>
-															<div class="col-6">
-																<input type="range" min="1" max="10" value="5"  id="myRange2">
-															</div>
-															<div class="col-3">
-																<div class="numberCircle" id="demo2" style="font-size: 9px;"></div>
-															</div>
-														</div>
-														<br>
-														<div class="row">
-															<div class="col-3">
-																<h7>Area 4.</h7>
-															</div>
-															<div class="col-6">
-																<input type="range" min="1" max="10" value="5"  id="myRange3">
-															</div>
-															<div class="col-3">
-																<div class="numberCircle" id="demo3" style="font-size: 9px;"></div>
-															</div>
-														</div>
-														
-														
-														
-														
-														
-													</div>
-												  </div>
-												
-											  </div>
-											  
-											</div>
-											<hr>
-											<!--begin::Accordion-->
-											<div class="accordion">
-												<div class="accordion-item">
-													<h2 class="accordion-header" >
-														<button style="color: black; font-weight: bold; font-size: 14px;" class="accordion-button" type="button">
-															<a href="#" style="padding: 5px 8px 5px 10px; margin-right: 25px;" class="btn btn-warning">1</a>
-															Shoulder Pain
-															<h5 style="margin:0px 8px 0px 25px">Level    </h5><h5 style="font-size: .60em; margin-top:5px" class="numberCircle">2</h5>
-														</button>
-													</h2>
-													<div class="accordion-body">
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-													</div>
-													
-												</div>
-											</div>
-											<br><br>
-											<div class="accordion">
-												<div class="accordion-item">
-													<h2 class="accordion-header" >
-														<button style="color: black; font-weight: bold; font-size: 14px;" class="accordion-button" type="button">
-															<a href="#" style="padding: 5px 8px 5px 10px; margin-right: 25px;" class="btn btn-warning">2</a>
-															Elbow Pain
-															<h5 style="margin:0px 8px 0px 25px">Level    </h5><h5 style="font-size: .60em; margin-top:5px" class="numberCircle">2</h5>
-														</button>
-													</h2>
-													<div class="accordion-body">
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-													</div>
-													
-												</div>
-											</div>
-											<br><br>
-											<div class="accordion">
-												<div class="accordion-item">
-													<h2 class="accordion-header" >
-														<button style="color: black; font-weight: bold; font-size: 14px;" class="accordion-button" type="button">
-															<a href="#" style="padding: 5px 8px 5px 10px; margin-right: 25px;" class="btn btn-warning">3</a>
-															Knee Pain
-															<h5 style="margin:0px 8px 0px 25px">Level    </h5><h5 style="font-size: .60em; margin-top:5px" class="numberCircle">5</h5>
-														</button>
-													</h2>
-													<div class="accordion-body">
-														Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-													</div>
-													
-												</div>
-											</div>
-										  </div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-			
 						<!--end::Stepper-->
 					</div>
 					<!--end::Modal body-->
-					
-
 				</div>
 				<!--end::Modal content-->
 			</div>
@@ -1070,61 +669,6 @@ License: -->
 		
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Vendors Javascript(used by this page)-->
-		<script>
-			const temp = document.getElementById('temp_body');
-			
-			function newfunction(){
-				if(temp.style.display != 'none'){
-					temp.style.display = 'none';
-				}else{
-					temp.style.display = 'block';
-				}
-			}
-			const temp1 = document.getElementById('temp_body1');
-			
-			function newfunction1(){
-				if(temp1.style.display != 'none'){
-					temp1.style.display = 'none';
-				}else{
-					temp1.style.display = 'block';
-				}
-			}
-			var slider = document.getElementById("myRange");
-			var output = document.getElementById("demo");
-			output.innerHTML = slider.value; // Display the default slider value
-
-			// Update the current slider value (each time you drag the slider handle)
-			slider.oninput = function() {
-			output.innerHTML = this.value;
-			}
-
-			var slider1 = document.getElementById("myRange1");
-			var output1 = document.getElementById("demo1");
-			output1.innerHTML = slider1.value; // Display the default slider1 value
-
-			// Update the current slider1 value (each time you drag the slider1 handle)
-			slider1.oninput = function() {
-			output1.innerHTML = this.value;
-			}
-
-			var slider2 = document.getElementById("myRange2");
-			var output2 = document.getElementById("demo2");
-			output2.innerHTML = slider2.value; // Display the default slider2 value
-
-			// Update the current slider2 value (each time you drag the slider2 handle)
-			slider2.oninput = function() {
-			output2.innerHTML = this.value;
-			}
-
-			var slider3 = document.getElementById("myRange3");
-			var output3 = document.getElementById("demo3");
-			output3.innerHTML = slider3.value; // Display the default slider3 value
-
-			// Update the current slider3 value (each time you drag the slider3 handle)
-			slider3.oninput = function() {
-			output3.innerHTML = this.value;
-			}
-		</script>
 		<script src="{% static 'js/datatables.bundle.js' %}"></script>
 		<!--end::Page Vendors Javascript-->
 		<!--begin::Page Custom Javascript(used by this page)-->
@@ -1139,5 +683,15 @@ License: -->
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>
+
+    <script>
+        const temp_body = document.getElementById('temp_body');
+        const orig = document.getElementsByClassName('orig');
+
+        orig.addEventListener('click', ()=>{
+            
+            console.log('hello');
+        })
+    </script>
 	<!--end::Body-->
 </html>
